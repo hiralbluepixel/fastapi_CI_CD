@@ -21,11 +21,11 @@ def create_user(name: str, age: int):
     }
 
 
-# @app.delete("/users/{user_id}")
-# def delete_user(user_id: int):
-#     if user_id in data:
-#         del data[user_id]
-#         return {
-#             "message": f"User {user_id} deleted successfully"
-#         }
-#     return {"message": "User not found"}
+@app.delete("/users/{user_id}")
+def delete_user(user_id: int):
+    if user_id in data:
+        del data[user_id]
+        return {
+            "message": f"User {user_id} deleted successfully"
+        }
+    return {"message": "User not found"}
