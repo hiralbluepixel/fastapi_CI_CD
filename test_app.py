@@ -46,6 +46,7 @@ def test_get_users(user_data):
     assert response.status_code == 200
 
     users = response.json()
+    print("users---",users)
 
     assert len(users) == 1
 
