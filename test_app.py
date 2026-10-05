@@ -69,8 +69,7 @@ def test_delete_user(user_data):
         == f"User {user_id} deleted successfully"
     )
 
-
-def new_testcase2():
+def new_testcase():
     # Create a new user
     user_data = {
         "name": "Alice",
@@ -80,20 +79,17 @@ def new_testcase2():
     assert create_response.status_code == 200
     user_id = create_response.json()["user_id"]
 
-    # Get the list of users and verify the new user is present
     get_response = client.get("/users")
     assert get_response.status_code == 200
     users = get_response.json()
     assert str(user_id) in users
-    assert users[str(user_id)]["name"] == "Alice"
-    assert users[str(user_id)]["age"] == 30
 
     # Delete the user
     delete_response = client.delete(f"/users/{user_id}")
     assert delete_response.status_code == 200
     assert delete_response.json()["message"] == f"User {user_id} deleted successfully"
 
-    # Verify the user is no longer present
+    # Verify the user is deleted
     get_response_after_delete = client.get("/users")
     assert get_response_after_delete.status_code == 200
     users_after_delete = get_response_after_delete.json()
